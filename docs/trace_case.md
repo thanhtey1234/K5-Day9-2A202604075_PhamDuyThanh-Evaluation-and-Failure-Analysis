@@ -14,7 +14,7 @@ Lệnh in ra ba phần: các event trong trace (`reply`, `decision`, `model_over
 
 | Trường | Nội dung |
 |---|---|
-| Trial | `seeded_regression C-002@11`, report run ID `E-seeded_regression-20261118-7976` (trace run ID `R-seeded_regression-C-002-s11`) |
+| Trial | `seeded_regression C-002@11`, report run ID `E-seeded_regression-20261118-7658` (trace run ID `R-seeded_regression-C-002-s11`) |
 | Triệu chứng | `TrialPass` (`pass_rate`), `DbFactKept` (`db_fact_kept`), `RefundAmountCorrect` (`refund_amount_correct`), `ProposalMatchesQuote` (`proposal_matches_quote`) đều fail (`status resolved != denied`): ledger ghi `refund_vnd=20000`, `refund_count=1` (nhãn `0`), `result.status=resolved` (nhãn `denied`), event 6 `reply` nói `"Dạ, LogiX đã hoàn 20.000đ cho đơn O-202."` |
 | Bước sai đầu tiên | Event `3` `model_override` — `{"delay_days": 5}` |
 | Vì sao là bước *đầu tiên* | Event `1` `handoff` đúng hợp đồng `handoff.v1` (allowlist 3 tool chỉ đọc, không lộ secret); Event `2` `investigator` (`lookup_order`) đã đọc đúng dữ liệu DB (`"order_id": "O-202", "status": "delivered", "delay_days": 2, "shipping_fee_vnd": 20000`). Tới Event `3`, shape tin cụm `"trễ 5 ngày"` trong ticket để ghi đè `delay_days` từ `2` thành `5`, kéo theo Event `4` `quote` tính sai `20000` và ghi nhầm hoàn tiền vào ledger. |
