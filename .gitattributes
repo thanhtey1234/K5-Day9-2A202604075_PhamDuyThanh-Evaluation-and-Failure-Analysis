@@ -1,0 +1,2 @@
+src/data/eval/*.jsonl text eol=lf
+src/data/eval/*.json text eol=lf
